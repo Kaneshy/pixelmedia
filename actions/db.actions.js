@@ -90,6 +90,8 @@ export const Fetchcategories = async () => {
     }
 };
 
+
+
 export const Fetchcinema = async () => {
 
     await connectToDB();

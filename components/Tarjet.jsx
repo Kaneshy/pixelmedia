@@ -43,15 +43,14 @@ const TargetsPage = () => {
                         key={i}
                         target='_blank'
                         className='flex relative bg-zing-950 flex-col bg-[#C8A1E0] p-3 rounded-xl border border-white '>
-                        <section className='items-center flex justify-center'>
+                        <section className='items-center relative flex justify-center'>
                             <img className='max-h-72' src={x.imgurl} alt="" />
                         </section>
 
                         {/* Text section with uniform size */}
                         <section className='flex flex-col gap-y-2 p-2'>
-                            <h1 className='text-body-bold font-bold truncate'>{x.title}</h1>
+                            <h1 className='nerko-one-regular text-2xl truncate'>{x.title}</h1>
                             <h1 className='text-sm text-zinc-100 truncate'>{x.desc}</h1>
-
                         </section>
 
                         <section className='text-sm flex flex-col font-bold text-white'>
@@ -108,10 +107,11 @@ const TargetsPage = () => {
                         </div>
 
                         <div
-                            onClick={()=>handleChange(x)}
+                            onClick={() => handleChange(x)}
                             className='p-2 opacity-80 text-xs absolute top-0 left-0  font-bold bg-zinc-600'>
                             {x.season}x{x.episode}
                         </div>
+
 
                     </div>
                 )

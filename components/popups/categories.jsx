@@ -16,7 +16,7 @@ const CategoriePage = () => {
       </button>
       {isopen && (
         <div>
-          <Categoriespopup />
+          <Categoriespopup isopen={isopen} setisopen={setisopen} />
         </div>
       )}
     </main>

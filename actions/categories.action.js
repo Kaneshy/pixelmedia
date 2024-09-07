@@ -4,6 +4,8 @@ import Users from "@/libs/models/User";
 import Tags from "@/libs/models/Tag";
 import { connectToDB } from "@/libs/mongoose";
 
+
+
 export const addnewcinema = async (formData) => {
     const title = formData.get('title');
     const desc = formData.get('desc');
@@ -15,8 +17,7 @@ export const addnewcinema = async (formData) => {
     const episode = formData.get('episode');
     const rating = formData.get('rating');
     const options = formData.get('options')
-    console.log(formData)
-
+    console.log(2, 'running addnewcinema', title)
     let uploadedImageUrl = null;
 
     await connectToDB(); // Ensure database connection

@@ -33,8 +33,8 @@ const TargetsPage = () => {
                             <img className='max-h-72'  src={x.imgurl} alt="" />
                         </section>
                         <section className='flex flex-col gap-y-2 p-2'>
-                            <h1 className='text-body-bold font-bold '>{x.title} </h1>
-                            <p className='text-small-semibold text-neutral-100'>{x.desc}</p>
+                            <h1 className='nerko-one-regular text-2xl truncate '>{x.title} </h1>
+                            <p className='text-sm text-zinc-100 truncate'>{x.desc}</p>
                         </section>
                     </a>
                 )

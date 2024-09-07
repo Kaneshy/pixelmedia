@@ -35,7 +35,7 @@ const TargetsMovie = () => {
 
                         {/* Text section with uniform size */}
                         <section className='flex flex-col gap-y-2 p-2'>
-                            <h1 className='text-body-bold font-bold truncate'>{x.title}</h1>
+                            <h1 className='nerko-one-regular text-2xl truncate'>{x.title}</h1>
                             <h1 className='text-sm text-zinc-100 truncate'>{x.desc}</h1>
                         </section>
 

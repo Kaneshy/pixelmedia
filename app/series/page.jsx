@@ -8,6 +8,10 @@ const SeriesPage = () => {
                 <TargetsPage  />
             </div>
             <CinemaPage/>
+            <div className="flex items-center justify-center">
+                <img src="https://res.cloudinary.com/dztz492su/image/upload/v1725728945/books/lf8rlcbsjmx7bwyw6oxa.png" alt="" />
+            </div>
+
         </main>
     )
 }
