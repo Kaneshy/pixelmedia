@@ -12,7 +12,7 @@ export default function Home() {
           </div>
         </div>
         <div className='p-4 mb-4 lobster-regular  bg-[#C8A1E0] rounded-xl'>
-          Discover a world of entertainment with our curated collection of movies and series. Whether you're in the mood for a thrilling blockbuster, a heartwarming romance, or a gripping TV series, we’ve got something for everyone. Enjoy seamless streaming, personalized recommendations, and an ever-growing library of the latest releases and timeless classics. Dive into your next favorite story today!
+          Discover a world of entertainment with our curated collection of movies and series. Whether youre in the mood for a thrilling blockbuster, a heartwarming romance, or a gripping TV series, weve got something for everyone. Enjoy seamless streaming, personalized recommendations, and an ever-growing library of the latest releases and timeless classics. Dive into your next favorite story today!
         </div>
         <TargetsPage  />
         <CategoriePage />
