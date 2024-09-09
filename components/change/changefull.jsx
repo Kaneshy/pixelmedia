@@ -114,6 +114,8 @@ const ChangeFull = ({ data, setischange, ischange }) => {
 
                 <select
                     name="options"
+                    value={preValue.options}
+                    onChange={handleChange}
                     className="border-2 uppercase nerko-one-regular rounded-md p-2  bg-[#C5705D] w-full  focus:ring-[#C5705D]"
                 >
                     <option value="movie">Movie</option>
