@@ -3,6 +3,7 @@ import cloudinary from 'cloudinary'
 import Users from "@/libs/models/User";
 import Tags from "@/libs/models/Tag";
 import { connectToDB } from "@/libs/mongoose";
+import Websites from '@/libs/models/Website';
 
 
 
@@ -152,6 +153,52 @@ const uploadImageToCloudinary = async (imageFile) => {
         console.error('Error uploading to Cloudinary:', error);
         throw error;
     }
+};
+
+
+export const addnewWebsite = async (formData) => {
+    const title = formData.get('title');
+    const desc = formData.get('desc');
+    const image = formData.get('image');
+    const link = formData.get('link');
+
+    let uploadedImageUrl = null;
+
+    await connectToDB(); // Ensure database connection
+
+    if (image) {
+        try {
+            // Wait for the image to be uploaded to Cloudinary
+            const imageUploadResponse = await uploadImageToCloudinary(image);
+            if (imageUploadResponse) {
+                try {
+                    // After successful image upload, create the user in MongoDB
+                    const newWebsite = await Websites.create({
+                        title: title,
+                        desc: desc,
+                        imgurl: imageUploadResponse, // Save the Cloudinary image URL
+                        link: link, // Save the link
+                    });
+
+                    console.log('New user created:', newWebsite);
+
+                    return true; // Return the newly created user
+                } catch (err) {
+                    console.log('Error creating user:', err.message);
+                    return null; // Handle the error accordingly
+                }
+            }
+
+
+        } catch (err) {
+            console.log('Error uploading image to Cloudinary:', err.message);
+            return null; // Handle image upload failure accordingly
+        }
+    }
+
+    console.log('Form data:', title, desc);
+
+
 };
 
 

@@ -8,6 +8,7 @@ const Navbar = () => {
             <div className='flex gap-4 '>
                 <Link className='hover:text-[#C8A1E0] px-4 rounded-full' href={'/series'}>SERIES</Link>
                 <Link className='hover:text-[#C8A1E0] px-4 rounded-full' href={'/movies'}>MOVIES</Link>
+                <Link className='hover:text-[#C8A1E0] px-4 rounded-full' href={'/websites'}>WEBSITES</Link>
             </div>
 
         </nav>

@@ -3,12 +3,13 @@ import { NextResponse } from "next/server"
 import Users from "@/libs/models/User";
 import Tags from "@/libs/models/Tag";
 import { connectToDB } from "@/libs/mongoose";
+import Websites from "@/libs/models/Website";
 
 // export const AddTagsMB = async ({ tagsArr }) => {
 //     console.log('running add tag')
 //     console.log(tagsArr)
 //     connectToDB();
-   
+
 //     try {
 //         const newTag = new Users({ tags: tagsArr })
 
@@ -52,8 +53,29 @@ import { connectToDB } from "@/libs/mongoose";
 //     }
 // };
 
+export const EditCinema = async (preValue) => {
+    console.log(preValue)
+
+    console.log('gettags',)
+
+    await connectToDB();
+
+    try {
+        console.log('runinng get')
+        const tag = await Tags.findByIdAndUpdate(preValue._id, preValue);
+        console.log('user', tag)
+        return true
+    } catch (err) {
+        console.log(err.message)
+        return NextResponse.json('error api/tarjet', err.message)
+    }
+
+}
+
+
+
 export const editEpisodeNumber = async (id, epi, sea) => {
-    console.log('gettags', )
+    console.log('gettags',)
 
     await connectToDB();
 
@@ -74,16 +96,30 @@ export const editEpisodeNumber = async (id, epi, sea) => {
 
 export const Fetchcategories = async () => {
 
-    console.log('gettags', )
+    console.log('gettags',)
 
     await connectToDB();
 
     try {
         console.log('runinng get')
-        const user = await Users.find().sort({ createdAt: -1 });
-        console.log('user', user)
-
+        const user = await Users.find().sort({ title: 1 });
         return user
+    } catch (err) {
+        console.log(err.message)
+        return NextResponse.json('error api/tarjet', err.message)
+    }
+};
+
+export const FetchWebsites = async () => {
+
+    console.log('gettags',)
+
+    await connectToDB();
+
+    try {
+        console.log('runinng get')
+        const websites = await Websites.find().sort({ title: 1 });
+        return websites
     } catch (err) {
         console.log(err.message)
         return NextResponse.json('error api/tarjet', err.message)
@@ -99,8 +135,6 @@ export const Fetchcinema = async () => {
     try {
         console.log('runinng get')
         const res = await Tags.find().sort({ createdAt: -1 });
-        console.log('user', res)
-
         return res
     } catch (err) {
         console.log(err.message)
@@ -117,14 +151,53 @@ export const Fetchmovie = async () => {
         const res = await Tags.find({
             options: 'movie'
         }).sort({ title: 1 });
-        console.log('user', res)
-
         return res
     } catch (err) {
         console.log(err.message)
         return NextResponse.json('error api/tarjet', err.message)
     }
 };
+
+export const DeleteAction = async (id) => {
+    await connectToDB();
+
+    try {
+        console.log('runinng get')
+        const res = await Tags.findByIdAndDelete(id);
+        return true
+    } catch (err) {
+        console.log(err.message)
+        return NextResponse.json('error api/tarjet', err.message)
+    }
+}
+
+export const deleteCategorie = async (id) => {
+    await connectToDB();
+
+    try {
+        console.log('runinng get')
+        const res = await Users.findByIdAndDelete(id);
+        return true
+    } catch (err) {
+        console.log(err.message)
+        return NextResponse.json('error api/tarjet', err.message)
+    }
+}
+
+export const deleteWebsite = async (id) => {
+    await connectToDB();
+
+    try {
+        console.log('runinng get')
+        const res = await Websites.findByIdAndDelete(id);
+        return true
+    } catch (err) {
+        console.log(err.message)
+        return NextResponse.json('error api/tarjet', err.message)
+    }
+}
+
+
 
 export const Fetchserie = async () => {
 
@@ -135,7 +208,6 @@ export const Fetchserie = async () => {
         const res = await Tags.find({
             options: 'serie'
         }).sort({ title: 1 });
-        console.log('user', res)
 
         return res
     } catch (err) {
@@ -184,7 +256,7 @@ export const AddTagsMB = async ({ tagsArr }) => {
 
 export const GetTagsMB = async () => {
 
-    console.log('gettags', )
+    console.log('gettags',)
 
     await connectToDB();
 

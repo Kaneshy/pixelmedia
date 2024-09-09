@@ -5,15 +5,20 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { FaPlay } from 'react-icons/fa'
 import ChangePage from './change/change'
+import ChangeFull from './change/changefull'
+import { MdMoreVert } from "react-icons/md";
+
 
 const TargetsPage = () => {
 
 
     const [data, setdata] = useState([])
     const [isopen, setisopen] = useState(false)
+    const [ischange, setischange] = useState(false)
     const [episodeK, setepisodeK] = useState(0)
     const [seasonK, setseasonK] = useState(0)
     const [idK, setidK] = useState('')
+    const [datachange, setdatachange] = useState({})
 
 
     useEffect(() => {
@@ -32,6 +37,11 @@ const TargetsPage = () => {
         setisopen(!isopen)
     }
 
+    const handleEdit = (x) => {
+        console.log('res', x)
+        setdatachange(x)
+        setischange(!ischange)
+    }
 
 
     return (
@@ -101,6 +111,13 @@ const TargetsPage = () => {
                                 </a>
                             )}
                         </section>
+                        <div
+                            onClick={() => handleEdit(x)}
+                            className=' w-full  flex items-center justify-end'>
+                            <div className='p-2 rounded-full  hover:bg-zinc-300'>
+                                <MdMoreVert size={18} />
+                            </div>
+                        </div>
 
                         <div className='p-2 text-xs absolute opacity-80 top-0 right-0 rounded-full font-bold bg-[#e75f55]'>
                             {x.rating}/10
@@ -118,6 +135,9 @@ const TargetsPage = () => {
             })}
             {isopen && (
                 <ChangePage isopen={isopen} setisopen={setisopen} seasonD={seasonK} episodeD={episodeK} idK={idK} />
+            )}
+            {ischange && (
+                <ChangeFull data={datachange} setischange={setischange} ischange={ischange} />
             )}
         </section>
 

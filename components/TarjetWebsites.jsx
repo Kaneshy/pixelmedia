@@ -1,13 +1,13 @@
 'use client'
 
-import { deleteCategorie, Fetchcategories } from '@/actions/db.actions'
+import { deleteWebsite, FetchWebsites } from '@/actions/db.actions'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { IoMdClose } from 'react-icons/io'
 
 
-const TargetsPage = () => {
+const TargetsWebsitePage = () => {
 
     const [data, setdata] = useState([])
     const router = useRouter()
@@ -15,7 +15,7 @@ const TargetsPage = () => {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const res = await Fetchcategories()
+            const res = await FetchWebsites()
             setdata(res)
             console.log(res)
         }
@@ -24,7 +24,7 @@ const TargetsPage = () => {
     }, [])
 
     const handledelete = async (id) => {
-        const res = await deleteCategorie(id)
+        const res = await deleteWebsite(id)
         if (res === true) {
             console.log('deleted succefully')
         }
@@ -62,4 +62,4 @@ const TargetsPage = () => {
     )
 }
 
-export default TargetsPage
+export default TargetsWebsitePage
