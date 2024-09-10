@@ -216,6 +216,23 @@ export const Fetchserie = async () => {
     }
 };
 
+export const FetchAnimes = async () => {
+
+    await connectToDB();
+
+    try {
+        console.log('runinng get')
+        const res = await Tags.find({
+            options: 'anime'
+        }).sort({ title: 1 });
+
+        return res
+    } catch (err) {
+        console.log(err.message)
+        return NextResponse.json('error api/tarjet', err.message)
+    }
+};
+
 export const AddTagsMB = async ({ tagsArr }) => {
     console.log('Running add tags if not exists');
     console.log('New Tags:', tagsArr);

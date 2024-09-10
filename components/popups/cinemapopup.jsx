@@ -76,6 +76,8 @@ const Cinemapopup = ({ isopen, setisopen }) => {
                 >
                     <option value="movie">Movie</option>
                     <option value="serie">Series</option>
+                    <option value="anime">Anime</option>
+
                 </select>
 
                 <label htmlFor="title" className="uppercase nerko-one-regular">Title:</label>

@@ -15,6 +15,7 @@ const Navbar = () => {
                 <Link className='hover:text-[#C8A1E0] lg:px-4 rounded-full' href={'/series'}>SERIES</Link>
                 <Link className='hover:text-[#C8A1E0] lg:px-4 rounded-full' href={'/movies'}>MOVIES</Link>
                 <Link className='hover:text-[#C8A1E0] lg:px-4 rounded-full' href={'/websites'}>WEBSITES</Link>
+                <Link className='hover:text-[#C8A1E0] lg:px-4 rounded-full' href={'/animes'}>ANIMES</Link>
             </div>
 
             {/* Menu for smaller screens */}
@@ -30,6 +31,7 @@ const Navbar = () => {
                             <Link className='text-white p-2 bg-purple-500 rounded-md hover:bg-purple-700' href={'/series'}>SERIES</Link>
                             <Link className='text-white p-2 bg-purple-500 rounded-md hover:bg-purple-700' href={'/movies'}>MOVIES</Link>
                             <Link className='text-white p-2 bg-purple-500 rounded-md hover:bg-purple-700' href={'/websites'}>WEBSITES</Link>
+                            <Link className='text-white p-2 bg-purple-500 rounded-md hover:bg-purple-700' href={'/animes'}>ANIMES</Link>
                         </div>
                     </div>
                 )}
