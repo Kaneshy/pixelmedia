@@ -1,5 +1,6 @@
 import CinemaPage from "@/components/popups/cinema";
 import TargetsPage from "@/components/Tarjet";
+import Bookscomp from "@/components/ui/bookscomp";
 
 const SeriesPage = () => {
     return (
@@ -8,10 +9,7 @@ const SeriesPage = () => {
                 <TargetsPage  />
             </div>
             <CinemaPage/>
-            <div className="flex items-center justify-center">
-                <img src="https://res.cloudinary.com/dztz492su/image/upload/v1725728945/books/lf8rlcbsjmx7bwyw6oxa.png" alt="" />
-            </div>
-
+            <Bookscomp/>
         </main>
     )
 }

@@ -14,8 +14,8 @@ const Navbar = () => {
             <div className='flex gap-4 max-sm:hidden '>
                 <Link className='hover:text-[#C8A1E0] lg:px-4 rounded-full' href={'/series'}>SERIES</Link>
                 <Link className='hover:text-[#C8A1E0] lg:px-4 rounded-full' href={'/movies'}>MOVIES</Link>
-                <Link className='hover:text-[#C8A1E0] lg:px-4 rounded-full' href={'/websites'}>WEBSITES</Link>
                 <Link className='hover:text-[#C8A1E0] lg:px-4 rounded-full' href={'/animes'}>ANIMES</Link>
+                <Link className='hover:text-[#C8A1E0] lg:px-4 rounded-full' href={'/websites'}>WEBSITES</Link>
             </div>
 
             {/* Menu for smaller screens */}
