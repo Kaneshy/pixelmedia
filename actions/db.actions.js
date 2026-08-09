@@ -58,7 +58,8 @@ export const EditCinema = async (preValue) => {
 
     console.log('gettags',)
 
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return false;
 
     try {
         console.log('runinng get')
@@ -77,7 +78,8 @@ export const EditCinema = async (preValue) => {
 export const editEpisodeNumber = async (id, epi, sea) => {
     console.log('gettags',)
 
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return false;
 
     try {
         console.log('runinng get')
@@ -98,7 +100,8 @@ export const Fetchcategories = async () => {
 
     console.log('gettags',)
 
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return [];
 
     try {
         console.log('runinng get')
@@ -114,7 +117,8 @@ export const FetchWebsites = async () => {
 
     console.log('gettags',)
 
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return [];
 
     try {
         console.log('runinng get')
@@ -130,7 +134,8 @@ export const FetchWebsites = async () => {
 
 export const Fetchcinema = async () => {
 
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return [];
 
     try {
         console.log('runinng get')
@@ -144,7 +149,8 @@ export const Fetchcinema = async () => {
 
 export const Fetchmovie = async () => {
 
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return [];
 
     try {
         console.log('runinng get')
@@ -159,7 +165,8 @@ export const Fetchmovie = async () => {
 };
 
 export const DeleteAction = async (id) => {
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return false;
 
     try {
         console.log('runinng get')
@@ -172,7 +179,8 @@ export const DeleteAction = async (id) => {
 }
 
 export const deleteCategorie = async (id) => {
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return false;
 
     try {
         console.log('runinng get')
@@ -185,7 +193,8 @@ export const deleteCategorie = async (id) => {
 }
 
 export const deleteWebsite = async (id) => {
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return false;
 
     try {
         console.log('runinng get')
@@ -201,7 +210,8 @@ export const deleteWebsite = async (id) => {
 
 export const Fetchserie = async () => {
 
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return [];
 
     try {
         console.log('runinng get')
@@ -218,7 +228,8 @@ export const Fetchserie = async () => {
 
 export const FetchAnimes = async () => {
 
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return [];
 
     try {
         console.log('runinng get')
@@ -237,36 +248,35 @@ export const AddTagsMB = async ({ tagsArr }) => {
     console.log('Running add tags if not exists');
     console.log('New Tags:', tagsArr);
 
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return null;
 
     try {
-        // Find the user by ID
         const user = await Users.findById('66c67da0078ee9d7db337949');
 
         if (user) {
-            // Filter out tags that already exist in the user's tags array
-            const uniqueTags = tagsArr.filter(tag => !user.tags.includes(tag));
+            const safeTags = Array.isArray(user.tags) ? user.tags : [];
+            const uniqueTags = Array.isArray(tagsArr)
+                ? tagsArr.filter(tag => !safeTags.includes(tag))
+                : [];
 
             if (uniqueTags.length > 0) {
-                // Add the new unique tags to the existing tags array
-                user.tags.push(...uniqueTags);
-
-                // Save the updated user document
+                user.tags = [...safeTags, ...uniqueTags];
                 const updatedUser = await user.save();
                 console.log('Updated User:', updatedUser);
-                // return updatedUser; // Return the updated document if needed
+                return updatedUser;
             } else {
                 console.log('No new tags to add.');
-                return user; // Return the original user if no new tags were added
+                return user;
             }
         } else {
             console.log('User not found');
-            return null; // Return null or handle the case when the user is not found
+            return null;
         }
 
     } catch (err) {
         console.log('Error:', err.message);
-        return null; // Handle the error accordingly, e.g., return an error response
+        return null;
     }
 };
 
@@ -275,16 +285,20 @@ export const GetTagsMB = async () => {
 
     console.log('gettags',)
 
-    await connectToDB();
+    const dbReady = await connectToDB();
+    if (!dbReady) return [];
 
     try {
         console.log('runinng get')
         const user = await Users.findById('66c67da0078ee9d7db337949');
-        console.log('user', user.tags)
+        if (!user) return [];
 
-        return user.tags
+        const tags = Array.isArray(user.tags) ? user.tags : [];
+        console.log('user', tags)
+
+        return tags
     } catch (err) {
         console.log(err.message)
-        return NextResponse.json('error api/tarjet', err.message)
+        return []
     }
 };
